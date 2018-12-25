@@ -1,18 +1,17 @@
 {
   "name": "brain-games-by-fluxet",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "project for brain games on hexlet.io",
-  "main": "index.js",
-	"bin": {
-	 "brain-games": "dist/bin/brain-games.js"
-	},
-	"files": [
+  "bin": {
+    "brain-games": "dist/bin/brain-games.js"
+  },
+  "files": [
     "dist"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production babel src --out-dir dist --source-maps inline",
-		"prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -34,5 +33,8 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "cross-env": "^5.2.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.9"
   }
 }
