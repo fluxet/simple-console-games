@@ -1,18 +1,22 @@
-const userName = require('readline-sync').question('May I have your name? ');
 
 const greeting = () => {
+  console.log('Welcome to the Brain Games!');
+  const userName = require('readline-sync').question('May I have your name? ');
   console.log(`Hi ${userName}!`);
   console.log(' ');
   return userName;
 };
 
-const askEven = () => {
+const askEven = (name) => {
   const attempts = 3;
   const maxNumber = 100;
 
+  console.log('Answer "yes" if number even otherwise answer "no".');
+  console.log(' ');
+
   const iter = (count) => {
     if (count === attempts) {
-      console.log(`Congratulations, ${userName}!`);
+      console.log(`Congratulations, ${name}!`);
       return;
     }
     const randomNumber = Math.floor(Math.random() * (maxNumber + 1));

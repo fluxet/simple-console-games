@@ -1,4 +1,6 @@
 #!/usr/bin/env node
-import { askEven } from '..';
 
-askEven();
+import { greeting, askEven } from '..';
+
+const userName = greeting();
+askEven(userName);
