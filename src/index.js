@@ -1,22 +1,23 @@
-
-const greeting = () => {
+const showHeader = () => {
   console.log('Welcome to the Brain Games!');
-  const userName = require('readline-sync').question('May I have your name? ');
-  console.log(`Hi ${userName}!`);
-  console.log(' ');
-  return userName;
 };
 
-const askEven = (name) => {
+const showTask1 = () => {
+  console.log('Answer "yes" if number even otherwise answer "no".');
+  console.log(' ');
+};
+
+const askEven = () => {
   const attempts = 3;
   const maxNumber = 100;
 
-  console.log('Answer "yes" if number even otherwise answer "no".');
+  const userName = require('readline-sync').question('May I have your name? ');
+  console.log(`Hi ${userName}!`);
   console.log(' ');
 
   const iter = (count) => {
     if (count === attempts) {
-      console.log(`Congratulations, ${name}!`);
+      console.log(`Congratulations, ${userName}!`);
       return;
     }
     const randomNumber = Math.floor(Math.random() * (maxNumber + 1));
@@ -35,4 +36,4 @@ const askEven = (name) => {
   iter(0);
 };
 
-export { greeting, askEven };
+export { showHeader, showTask1, askEven };

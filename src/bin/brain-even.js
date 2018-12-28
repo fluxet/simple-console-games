@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { greeting, askEven } from '..';
+import { showHeader,showTask1, askEven } from '..';
 
-const userName = greeting();
-askEven(userName);
+showHeader();
+showTask1();
+askEven();
