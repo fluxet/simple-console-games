@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { showHeader,showTask1, askEven } from '..';
+import { showHeader, showTask1, askEven } from '..';
 
 showHeader();
 showTask1();
