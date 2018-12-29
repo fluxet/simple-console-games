@@ -1,3 +1,5 @@
+import readline from 'readline-sync';
+
 const showHeader = () => {
   console.log('Welcome to the Brain Games!');
 };
@@ -11,7 +13,7 @@ const askEven = () => {
   const attempts = 3;
   const maxNumber = 100;
 
-  const userName = require('readline-sync').question('May I have your name? ');
+  const userName = readline.question('May I have your name? ');
   console.log(`Hi ${userName}!`);
   console.log(' ');
 
@@ -24,7 +26,7 @@ const askEven = () => {
     console.log(`Question: ${randomNumber}`);
 
     const rightAnswer = (randomNumber % 2 === 0) ? 'yes' : 'no';
-    const userAnswer = require('readline-sync').question('Your answer: ');
+    const userAnswer = readline.question('Your answer: ');
 
     if (userAnswer === rightAnswer) {
       console.log('Correct!');
