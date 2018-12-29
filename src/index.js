@@ -1,5 +1,8 @@
 import readline from 'readline-sync';
 
+const attempts = 3;
+const maxNumber = 100;
+
 const showHeader = () => {
   console.log('Welcome to the Brain Games!');
 };
@@ -9,10 +12,9 @@ const showTask1 = () => {
   console.log(' ');
 };
 
-const askEven = () => {
-  const attempts = 3;
-  const maxNumber = 100;
+const isEven = number => number % 2 === 0;
 
+const askEven = () => {
   const userName = readline.question('May I have your name? ');
   console.log(`Hi ${userName}!`);
   console.log(' ');
@@ -22,10 +24,10 @@ const askEven = () => {
       console.log(`Congratulations, ${userName}!`);
       return;
     }
-    const randomNumber = Math.floor(Math.random() * (maxNumber + 1));
-    console.log(`Question: ${randomNumber}`);
+    const question = Math.floor(Math.random() * (maxNumber + 1));
+    console.log(`Question: ${question}`);
 
-    const rightAnswer = (randomNumber % 2 === 0) ? 'yes' : 'no';
+    const rightAnswer = isEven(question) ? 'yes' : 'no';
     const userAnswer = readline.question('Your answer: ');
 
     if (userAnswer === rightAnswer) {
@@ -38,4 +40,10 @@ const askEven = () => {
   iter(0);
 };
 
-export { showHeader, showTask1, askEven };
+const runGame1 = () => {
+  showHeader();
+  showTask1();
+  askEven();
+};
+
+export { runGame1, showHeader };

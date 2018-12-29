@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import { showHeader, showTask1, askEven } from '..';
+import { runGame1 } from '..';
 
-showHeader();
-showTask1();
-askEven();
+runGame1();
