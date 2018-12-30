@@ -5,7 +5,9 @@
   "bin": {
     "brain-games": "dist/brain-games.js",
     "brain-even": "dist/brain-even.js",
-    "brain-calc": "dist/brain-calc.js"
+    "brain-calc": "dist/brain-calc.js",
+    "brain-gcd": "dist/brain-gcd.js",
+    "brain-progression": "dist/brain-progression.js"
   },
   "files": [
     "dist"
