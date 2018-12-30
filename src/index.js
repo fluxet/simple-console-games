@@ -1,20 +1,25 @@
 import readline from 'readline-sync';
+import {
+  showTaskEven,
+  makeQuestionEven,
+  showQuestionEven,
+  makeSolutionEven,
+} from './games/even';
+import {
+  showTaskCalc,
+  makeQuestionCalc,
+  showQuestionCalc,
+  makeSolutionCalc,
+} from './games/calc';
 
 const attempts = 3;
 const maxNumber = 100;
 
-const showHeader = () => {
+const getRandomNumber = max => Math.floor(Math.random() * (max + 1));
+
+const driver = (showTask, makeQuestion, showQuestion, makeSolution) => {
   console.log('Welcome to the Brain Games!');
-};
-
-const showTask1 = () => {
-  console.log('Answer "yes" if number even otherwise answer "no".');
-  console.log(' ');
-};
-
-const isEven = number => number % 2 === 0;
-
-const askEven = () => {
+  showTask();
   const userName = readline.question('May I have your name? ');
   console.log(`Hi ${userName}!`);
   console.log(' ');
@@ -24,10 +29,9 @@ const askEven = () => {
       console.log(`Congratulations, ${userName}!`);
       return;
     }
-    const question = Math.floor(Math.random() * (maxNumber + 1));
-    console.log(`Question: ${question}`);
-
-    const rightAnswer = isEven(question) ? 'yes' : 'no';
+    const question = makeQuestion();
+    console.log(showQuestion(question));
+    const rightAnswer = `${makeSolution(question)}`;
     const userAnswer = readline.question('Your answer: ');
 
     if (userAnswer === rightAnswer) {
@@ -35,15 +39,22 @@ const askEven = () => {
       iter(count + 1);
     } else {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
+      console.log(`Let's try again, ${userName}!`);
     }
   };
   iter(0);
 };
 
-const runGame1 = () => {
-  showHeader();
-  showTask1();
-  askEven();
+const runGameEven = () => {
+  driver(showTaskEven, makeQuestionEven, showQuestionEven, makeSolutionEven);
+};
+const runGameCalc = () => {
+  driver(showTaskCalc, makeQuestionCalc, showQuestionCalc, makeSolutionCalc);
 };
 
-export { runGame1, showHeader };
+export {
+  runGameEven,
+  runGameCalc,
+  getRandomNumber,
+  maxNumber,
+};

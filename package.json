@@ -1,10 +1,11 @@
 {
   "name": "brain-games-by-fluxet",
-  "version": "2.0.0",
+  "version": "3.0.3",
   "description": "project for brain games on hexlet.io",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-games": "dist/brain-games.js",
+    "brain-even": "dist/brain-even.js",
+    "brain-calc": "dist/brain-calc.js"
   },
   "files": [
     "dist"
