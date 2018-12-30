@@ -11,6 +11,12 @@ import {
   showQuestionCalc,
   makeSolutionCalc,
 } from './games/calc';
+import {
+  showTaskGcd,
+  makeQuestionGcd,
+  showQuestionGcd,
+  makeSolutionGcd,
+} from './games/gcd';
 
 const attempts = 3;
 const maxNumber = 100;
@@ -51,10 +57,14 @@ const runGameEven = () => {
 const runGameCalc = () => {
   driver(showTaskCalc, makeQuestionCalc, showQuestionCalc, makeSolutionCalc);
 };
+const runGameGcd = () => {
+  driver(showTaskGcd, makeQuestionGcd, showQuestionGcd, makeSolutionGcd);
+};
 
 export {
   runGameEven,
   runGameCalc,
+  runGameGcd,
   getRandomNumber,
   maxNumber,
 };
