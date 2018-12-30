@@ -1,22 +1,4 @@
 import readline from 'readline-sync';
-import {
-  showTaskEven,
-  makeQuestionEven,
-  showQuestionEven,
-  makeSolutionEven,
-} from './games/even';
-import {
-  showTaskCalc,
-  makeQuestionCalc,
-  showQuestionCalc,
-  makeSolutionCalc,
-} from './games/calc';
-import {
-  showTaskGcd,
-  makeQuestionGcd,
-  showQuestionGcd,
-  makeSolutionGcd,
-} from './games/gcd';
 
 const attempts = 3;
 const maxNumber = 100;
@@ -51,20 +33,8 @@ const driver = (showTask, makeQuestion, showQuestion, makeSolution) => {
   iter(0);
 };
 
-const runGameEven = () => {
-  driver(showTaskEven, makeQuestionEven, showQuestionEven, makeSolutionEven);
-};
-const runGameCalc = () => {
-  driver(showTaskCalc, makeQuestionCalc, showQuestionCalc, makeSolutionCalc);
-};
-const runGameGcd = () => {
-  driver(showTaskGcd, makeQuestionGcd, showQuestionGcd, makeSolutionGcd);
-};
-
 export {
-  runGameEven,
-  runGameCalc,
-  runGameGcd,
+  driver,
   getRandomNumber,
   maxNumber,
 };
