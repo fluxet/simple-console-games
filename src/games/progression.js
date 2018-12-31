@@ -1,39 +1,38 @@
-import { getRandomNumber, maxNumber, driver } from '..';
+import driver from '..';
+import getRandomNumber from '../utils';
 
-const progressionSize = 10;
+const maxNumber = 100;
+const task = 'What number is missing in the progression?';
 
-const showTaskPrg = () => {
-  console.log('What number is missing in the progression?');
-  console.log(' ');
-};
-
-const makeQuestionPrg = () => {
-  const firstElement = getRandomNumber(maxNumber);
-  const indexHide = getRandomNumber(progressionSize - 1);
-  const increment = getRandomNumber(maxNumber);
-
-  const arr = [firstElement];
-  for (let i = 1; i < progressionSize; i += 1) {
-    arr.push(arr[i - 1] + increment);
-  }
-  const question = {
-    arr,
-    indexHide,
+const getPrg = (first, inc, size) => {
+  const iter = (count, acc) => {
+    if (count === size) {
+      return acc;
+    }
+    acc.push(first + inc * count);
+    return iter(count + 1, acc);
   };
-  return question;
+  return iter(0, []);
 };
 
-const showQuestionPrg = (question) => {
-  const hideElem = (elem, index) => ((index === question.indexHide) ? '..' : elem);
+const makeQuestion = () => {
+  const progressionSize = 10;
+  const maxIncrement = 10;
+  const firstElement = getRandomNumber(maxNumber);
+  const hiddenElementIndex = getRandomNumber(progressionSize - 1);
+  const increment = getRandomNumber(maxIncrement);
+
+  const arrPrg = getPrg(firstElement, increment, progressionSize);
+  const hideElem = (elem, index) => ((index === hiddenElementIndex) ? '..' : elem);
   const arrToStr = (acc, elem) => `${acc} ${elem}`;
+  const arrVisible = arrPrg.map(hideElem).reduce(arrToStr, '');
 
-  const arrVisible = question.arr.map(hideElem).reduce(arrToStr, '');
-  return `Question: ${arrVisible}`;
+  const visible = `${arrVisible}`;
+  const solution = arrPrg[hiddenElementIndex];
+  return {
+    visible,
+    solution,
+  };
 };
-const makeSolutionPrg = question => (question.arr[question.indexHide]);
 
-const runGameProgression = () => {
-  driver(showTaskPrg, makeQuestionPrg, showQuestionPrg, makeSolutionPrg);
-};
-
-export default runGameProgression;
+export default () => driver(task, makeQuestion);

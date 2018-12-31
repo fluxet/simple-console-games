@@ -1,7 +1,11 @@
-import { getRandomNumber, maxNumber, driver } from '..';
+import driver from '..';
+import getRandomNumber from '../utils';
+
+const maxNumber = 100;
+const task = 'Find the greatest common divisor of given numbers.';
 
 const gcd = (arg1, arg2) => {
-  const minArg = (arg1 < arg2) ? arg1 : arg2;
+  const minArg = Math.min(arg1, arg2);
 
   const iter = (counter) => {
     if (counter <= 1) {
@@ -16,21 +20,15 @@ const gcd = (arg1, arg2) => {
   return iter(minArg);
 };
 
-const showTaskGcd = () => {
-  console.log('Find the greatest common divisor of given numbers.');
-  console.log(' ');
+const makeQuestion = () => {
+  const arg1 = getRandomNumber(maxNumber);
+  const arg2 = getRandomNumber(maxNumber);
+  const visible = `${arg1} ${arg2}`;
+  const solution = gcd(arg1, arg2);
+  return {
+    visible,
+    solution,
+  };
 };
 
-const makeQuestionGcd = () => ({
-  arg1: getRandomNumber(maxNumber),
-  arg2: getRandomNumber(maxNumber),
-});
-
-const showQuestionGcd = question => `Question: ${question.arg1} ${question.arg2}`;
-const makeSolutionGcd = question => gcd(question.arg1, question.arg2);
-
-const runGameGcd = () => {
-  driver(showTaskGcd, makeQuestionGcd, showQuestionGcd, makeSolutionGcd);
-};
-
-export default runGameGcd;
+export default () => driver(task, makeQuestion);

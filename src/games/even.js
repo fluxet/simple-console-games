@@ -1,17 +1,18 @@
-import { getRandomNumber, maxNumber, driver } from '..';
+import driver from '..';
+import getRandomNumber from '../utils';
 
-const showTaskEven = () => {
-  console.log('Answer "yes" if number even otherwise answer "no".');
-  console.log(' ');
-};
+const maxNumber = 100;
+const task = 'Answer "yes" if number even otherwise answer "no".';
 const isEven = number => number % 2 === 0;
 
-const makeQuestionEven = () => getRandomNumber(maxNumber);
-const showQuestionEven = question => `Question: ${question}`;
-const makeSolutionEven = question => (isEven(question) ? 'yes' : 'no');
-
-const runGameEven = () => {
-  driver(showTaskEven, makeQuestionEven, showQuestionEven, makeSolutionEven);
+const makeQuestion = () => {
+  const question = getRandomNumber(maxNumber);
+  const visible = `${question}`;
+  const solution = isEven(question) ? 'yes' : 'no';
+  return {
+    visible,
+    solution,
+  };
 };
 
-export default runGameEven;
+export default () => driver(task, makeQuestion);

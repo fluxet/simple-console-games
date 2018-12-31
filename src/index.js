@@ -1,13 +1,11 @@
 import readline from 'readline-sync';
 
 const attempts = 3;
-const maxNumber = 100;
 
-const getRandomNumber = max => Math.floor(Math.random() * (max + 1));
-
-const driver = (showTask, makeQuestion, showQuestion, makeSolution) => {
+export default (task, makeQuestion) => {
   console.log('Welcome to the Brain Games!');
-  showTask();
+  console.log(task);
+  console.log(' ');
   const userName = readline.question('May I have your name? ');
   console.log(`Hi ${userName}!`);
   console.log(' ');
@@ -18,23 +16,16 @@ const driver = (showTask, makeQuestion, showQuestion, makeSolution) => {
       return;
     }
     const question = makeQuestion();
-    console.log(showQuestion(question));
-    const rightAnswer = `${makeSolution(question)}`;
+    console.log(`Question: ${question.visible}`);
     const userAnswer = readline.question('Your answer: ');
 
-    if (userAnswer === rightAnswer) {
+    if (userAnswer === `${question.solution}`) {
       console.log('Correct!');
       iter(count + 1);
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer}'.`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${question.solution}'.`);
       console.log(`Let's try again, ${userName}!`);
     }
   };
   iter(0);
-};
-
-export {
-  driver,
-  getRandomNumber,
-  maxNumber,
 };

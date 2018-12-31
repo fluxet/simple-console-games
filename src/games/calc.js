@@ -1,5 +1,8 @@
-import { getRandomNumber, maxNumber, driver } from '..';
+import driver from '..';
+import getRandomNumber from '../utils';
 
+const maxNumber = 100;
+const task = 'What is the result of the expression?';
 const cmdIndicator = {
   0: '+',
   1: '-',
@@ -11,22 +14,17 @@ const cmdTranslator = {
   2: (a, b) => a * b,
 };
 
-const showTaskCalc = () => {
-  console.log('What is the result of the expression?');
-  console.log(' ');
+const makeQuestion = () => {
+  const arg1 = getRandomNumber(maxNumber);
+  const arg2 = getRandomNumber(maxNumber);
+  const cmd = getRandomNumber(Object.keys(cmdIndicator).length - 1);
+
+  const visible = `${arg1} ${cmdIndicator[cmd]} ${arg2}`;
+  const solution = cmdTranslator[cmd](arg1, arg2);
+  return {
+    visible,
+    solution,
+  };
 };
 
-const makeQuestionCalc = () => ({
-  arg1: getRandomNumber(maxNumber),
-  arg2: getRandomNumber(maxNumber),
-  cmd: getRandomNumber(Object.keys(cmdIndicator).length - 1),
-});
-
-const showQuestionCalc = question => `Question: ${question.arg1} ${cmdIndicator[question.cmd]} ${question.arg2}`;
-const makeSolutionCalc = question => cmdTranslator[question.cmd](question.arg1, question.arg2);
-
-const runGameCalc = () => {
-  driver(showTaskCalc, makeQuestionCalc, showQuestionCalc, makeSolutionCalc);
-};
-
-export default runGameCalc;
+export default () => driver(task, makeQuestion);
