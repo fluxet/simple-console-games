@@ -14,17 +14,17 @@ const cmdTranslator = {
   2: (a, b) => a * b,
 };
 
-const makeQuestion = () => {
+const makeGameParameters = () => {
   const arg1 = getRandomNumber(maxNumber);
   const arg2 = getRandomNumber(maxNumber);
   const cmd = getRandomNumber(Object.keys(cmdIndicator).length - 1);
 
-  const visible = `${arg1} ${cmdIndicator[cmd]} ${arg2}`;
+  const question = `${arg1} ${cmdIndicator[cmd]} ${arg2}`;
   const solution = cmdTranslator[cmd](arg1, arg2);
   return {
-    visible,
+    question,
     solution,
   };
 };
 
-export default () => driver(task, makeQuestion);
+export default () => driver(task, makeGameParameters);

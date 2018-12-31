@@ -2,9 +2,11 @@ import driver from '..';
 import getRandomNumber from '../utils';
 
 const maxNumber = 100;
+const progressionSize = 10;
+const maxIncrement = 10;
 const task = 'What number is missing in the progression?';
 
-const getPrg = (first, inc, size) => {
+const generateProgression = (first, inc, size) => {
   const iter = (count, acc) => {
     if (count === size) {
       return acc;
@@ -15,24 +17,21 @@ const getPrg = (first, inc, size) => {
   return iter(0, []);
 };
 
-const makeQuestion = () => {
-  const progressionSize = 10;
-  const maxIncrement = 10;
+const makeGameParameters = () => {
   const firstElement = getRandomNumber(maxNumber);
   const hiddenElementIndex = getRandomNumber(progressionSize - 1);
   const increment = getRandomNumber(maxIncrement);
 
-  const arrPrg = getPrg(firstElement, increment, progressionSize);
+  const progression = generateProgression(firstElement, increment, progressionSize);
   const hideElem = (elem, index) => ((index === hiddenElementIndex) ? '..' : elem);
-  const arrToStr = (acc, elem) => `${acc} ${elem}`;
-  const arrVisible = arrPrg.map(hideElem).reduce(arrToStr, '');
+  const arrquestion = progression.map(hideElem).join(' ');
 
-  const visible = `${arrVisible}`;
-  const solution = arrPrg[hiddenElementIndex];
+  const question = `${arrquestion}`;
+  const solution = progression[hiddenElementIndex];
   return {
-    visible,
+    question,
     solution,
   };
 };
 
-export default () => driver(task, makeQuestion);
+export default () => driver(task, makeGameParameters);

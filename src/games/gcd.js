@@ -20,15 +20,15 @@ const gcd = (arg1, arg2) => {
   return iter(minArg);
 };
 
-const makeQuestion = () => {
+const makeGameParameters = () => {
   const arg1 = getRandomNumber(maxNumber);
   const arg2 = getRandomNumber(maxNumber);
-  const visible = `${arg1} ${arg2}`;
+  const question = `${arg1} ${arg2}`;
   const solution = gcd(arg1, arg2);
   return {
-    visible,
+    question,
     solution,
   };
 };
 
-export default () => driver(task, makeQuestion);
+export default () => driver(task, makeGameParameters);

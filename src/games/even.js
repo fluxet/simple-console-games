@@ -5,14 +5,14 @@ const maxNumber = 100;
 const task = 'Answer "yes" if number even otherwise answer "no".';
 const isEven = number => number % 2 === 0;
 
-const makeQuestion = () => {
-  const question = getRandomNumber(maxNumber);
-  const visible = `${question}`;
-  const solution = isEven(question) ? 'yes' : 'no';
+const makeGameParameters = () => {
+  const questionNumber = getRandomNumber(maxNumber);
+  const question = `${questionNumber}`;
+  const solution = isEven(questionNumber) ? 'yes' : 'no';
   return {
-    visible,
+    question,
     solution,
   };
 };
 
-export default () => driver(task, makeQuestion);
+export default () => driver(task, makeGameParameters);
